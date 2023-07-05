@@ -71,3 +71,13 @@ button{
 .google-icon:active{
     color: #2D55C7;
 }
+.create-account-link{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.create-account-link button{
+    font-size: 12px;
+    margin-top: 0;
+    margin-left: 5px;
+}

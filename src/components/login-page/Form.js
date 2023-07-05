@@ -24,6 +24,7 @@ function Form() {
           <p className='sign-in-with-google'> 
           <Google className='google-icon'/>Sign in with Google 
            </p>
+           <p className='create-account-link'>Don't have an account? <button>Register here</button></p>
         </form>
       </div>
     </div>
