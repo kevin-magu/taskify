@@ -12,12 +12,10 @@ function App() {
     <div className="App">
       <div className='main-page-container'>
       <div className='app-title'><p>Taskify</p></div>
-        <Home />
-
         <Router>
             <Routes> 
-            <Route path='/' element={<Home />}/>
-            <Route path='/createtasks' element={<Tasks />}/>
+            <Route exact path="/"element={<Home />}/>
+            <Route path="/createtasks" element={<Tasks />}/>
             </Routes>
         </Router>
       </div>

@@ -4,8 +4,8 @@ import '../styles/Home.css'
 function Home() {
   return (
     <div className="home-page-container">
-        <Rightside />
         <Leftside />
+        <Rightside />
     </div>
   )
 }
