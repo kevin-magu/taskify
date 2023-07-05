@@ -1,8 +1,8 @@
-import Createtask from "../components/main-page/Createtask";
-import Userpic from "../components/main-page/Userpic";
-import Loginbutton from "../components/main-page/Loginbutton"; 
-import Taskcard from "../components/main-page/Taskcard";
-import Dropdown from "../components/main-page/Dropdown";
+import Createtask from "../components/tasks-page/Createtask";
+import Userpic from "../components/tasks-page/Userpic";
+import Loginbutton from "../components/tasks-page/Loginbutton"; 
+import Taskcard from "../components/tasks-page/Taskcard";
+import Dropdown from "../components/tasks-page/Dropdown";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Link } from "react-router-dom";
 
