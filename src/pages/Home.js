@@ -10,6 +10,9 @@ function Home() {
           <Createtask />
           <Userpic />
           <Loginbutton />
+          <div className="task-card-container">
+
+          </div>
         </div>
     </div>
   )
