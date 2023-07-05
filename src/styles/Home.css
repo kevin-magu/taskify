@@ -32,31 +32,39 @@ button p{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 0;
-    transform: translateX(250px);
+    margin-right: 70px;
 }
 .create-task-button{
-    transform: translateX(-250px);
+    margin-left: 50px;
     
 }
 .logout-button{
-    transform: translateX(280px);
-    margin-top: 3px;
+    margin-right: 100px;
+    margin-top: 7px;
+}
+.login-button-section{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
 }
 
 .drop-down select{
     width: 170px;
+    height: 25px;
     border: 1px solid #0000EE;
 }
 .drop-down select:focus{
     outline: none;
+}
+.drop-down p{
+    font-weight: bold;
 }
 
 .task-card-container{
     margin-top: 30px;
     display: flex;
     justify-content: center;
-    
+    flex-wrap: wrap;
     min-height: 60vh;
     width: 100%;
 }
@@ -65,7 +73,7 @@ button p{
     border-radius: 4px;
     width: 300px;
     height: 350px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 12px;
     margin: 20px;
 }
 .task-description{
@@ -77,5 +85,11 @@ button p{
     text-align: center;
 }
 .task-status{
-    margin-top: 50px;
+    margin-top: 30px;
+}
+.task-due-date{
+    margin-top: 30px;
+}
+.edit{
+    margin-top: 30px;
 }

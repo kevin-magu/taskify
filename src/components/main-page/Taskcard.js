@@ -1,4 +1,4 @@
-import { Toolbar } from "@mui/material" 
+import { Edit } from "@mui/icons-material"
 
 function Taskcard() {
   return (
@@ -8,7 +8,8 @@ function Taskcard() {
         </p>
         <p className='task-status'>Status: <span>Pending...</span></p>
         <p className='task-due-date'>Due Date: 12/07/2023</p>
-        <Toolbar /> 
+        
+        <p className='edit'><a href="#"> <Edit /> </a></p>
     </div>
   )
 }

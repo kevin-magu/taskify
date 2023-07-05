@@ -10,8 +10,11 @@ function Home() {
     <div>
         <div className="header2">
           <Createtask />
+          <div className="login-button-section">
           <Userpic />
           <Loginbutton />
+          </div>
+          
         </div>
         <div className="header2">
           <Dropdown />

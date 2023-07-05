@@ -19,6 +19,8 @@ function App() {
       <footer>
         <p className='social-links'><a href="#"><GitHub /></a> <a href="#"><Twitter /> </a>
         <a href="#"> <LinkedIn /> </a> <a href="#"> <WhatsApp /> </a>
+          <span style={{ marginLeft: `20px`, fontWeight: `bold`, color: `blue` }}>&copy; 2023 Taskify</span>
+          <span style={{ marginLeft: `20px`, fontWeight: `bold`,  color: `blue` }}>Proudly developed by Kevin M</span>
         </p>
       </footer>
     </div>
