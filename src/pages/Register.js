@@ -2,7 +2,7 @@ import Registrationform from "../components/registration-page/Registrationform"
 
 function Register() {
   return (
-    <div>
+    <div className="login-page-container">
         <Registrationform />
     </div>
   )

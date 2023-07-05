@@ -5,6 +5,7 @@ import { WhatsApp } from '@mui/icons-material';
 import Tasks from './pages/Tasks'
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import { Link } from 'react-router-dom'; 
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
@@ -14,12 +15,14 @@ function App() {
   return (
     <div className="App">
       <div className='main-page-container'>
-      <div className='app-title'><p>Taskify</p></div>
+      
         <Router>
+        <div className='app-title'> <Link className='link-to-register' to="/"> <p>Taskify</p></Link> </div>
             <Routes> 
             <Route exact path="/"element={<Home />}/>
             <Route path="/createtasks" element={<Tasks />}/>
             <Route path="/login" element={<Login />}/>
+            <Route path="/register" element={<Register />}/>
             </Routes>
         </Router>
       </div>

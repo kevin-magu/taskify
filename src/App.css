@@ -10,7 +10,13 @@
   margin-top: 30px;
   font-size: 38px;
   font-weight: bold;
+}
+.app-title p{
+  width: auto;
   color: blue;
+  text-decoration: none;
+}
+.link-to-register{
   text-decoration: none;
 }
 
