@@ -14,13 +14,12 @@ function App() {
   return (
     <div className="App">
       <div className='main-page-container'>
-      <div className='app-title'><a to="/"><p>Taskify</p></a></div>
+      <div className='app-title'><p>Taskify</p></div>
         <Router>
             <Routes> 
             <Route exact path="/"element={<Home />}/>
             <Route path="/createtasks" element={<Tasks />}/>
             <Route path="/login" element={<Login />}/>
-            
             </Routes>
         </Router>
       </div>
