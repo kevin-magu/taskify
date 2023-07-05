@@ -12,12 +12,7 @@ function Tasks() {
     <div>
       
         <div className="header2">
-          
-          <Router>
-              <Routes>
-              <Route path="/createtasks" element={ <Tasks /> }/>
-              </Routes>
-          </Router>
+          <Createtask />
           <div className="login-button-section">
           <Userpic />
           <Loginbutton />
