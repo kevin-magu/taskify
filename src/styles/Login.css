@@ -48,3 +48,26 @@ label{
 #label{
     margin-top: 30px;
 }
+button{
+    margin-top: 30px;
+    font-weight: bold;
+    font-size: 18px;
+    width: 100px;
+}
+.sign-in-with-google{
+    margin-top: 20px;
+    display: flex;
+    font-weight: bold;
+    align-items: center;
+    cursor: pointer;
+}
+.google-icon{
+    color: #4285F4;
+    margin-right: 4px;
+}
+.google-icon:hover{
+    color: #3367D6;
+}
+.google-icon:active{
+    color: #2D55C7;
+}
