@@ -1,6 +1,7 @@
 import React from 'react';
 import { EmojiEmotions } from '@mui/icons-material';
 import { Google } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 function Form() {
   return (
@@ -24,11 +25,11 @@ function Form() {
           <p className='sign-in-with-google'> 
           <Google className='google-icon'/>Sign in with Google 
            </p>
-           <p className='create-account-link'>Don't have an account? <button>Register here</button></p>
+           <p className='create-account-link'>Don't have an account? <Link to="/register" className='reginster-link'><button>Register here</button> </Link> </p> 
         </form>
       </div>
     </div>
   )
 }
-
+<p>Taskify</p>
 export default Form

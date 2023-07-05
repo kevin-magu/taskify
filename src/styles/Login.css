@@ -60,6 +60,7 @@ button{
     font-weight: bold;
     align-items: center;
     cursor: pointer;
+    color: blue;
 }
 .google-icon{
     color: #4285F4;
@@ -81,4 +82,8 @@ button{
     font-size: 12px;
     margin-top: 0;
     margin-left: 5px;
+    text-decoration: none;
+}
+.reginster-link{
+    text-decoration: none;
 }
