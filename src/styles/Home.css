@@ -43,3 +43,31 @@ button p{
     transform: translateX(280px);
     margin-top: 3px;
 }
+
+.task-card-container{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    
+    min-height: 60vh;
+    width: 100%;
+}
+.task-card{
+    padding: 20px;
+    border-radius: 4px;
+    width: 300px;
+    height: 350px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 20px;
+}
+.task-description{
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid blue;
+    text-align: center;
+}
+.task-status{
+    margin-top: 50px;
+}
