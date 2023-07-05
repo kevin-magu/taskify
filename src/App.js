@@ -2,8 +2,8 @@ import { GitHub } from '@mui/icons-material';
 import { Twitter } from '@mui/icons-material';
 import { LinkedIn } from '@mui/icons-material';
 import { WhatsApp } from '@mui/icons-material';
-
-import Home from './pages/Home'
+import { Link } from 'react-router-dom';
+import Tasks from './pages/Tasks'
 
 import './App.css';
 
@@ -12,9 +12,8 @@ function App() {
     <div className="App">
 
       <div className='main-page-container'>
-
       <div className='app-title'><p>Taskify</p></div>
-      <Home />
+      <Tasks />
       </div>
       <footer>
         <p className='social-links'><a href="#"><GitHub /></a> <a href="#"><Twitter /> </a>

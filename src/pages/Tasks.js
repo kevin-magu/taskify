@@ -5,7 +5,7 @@ import Taskcard from "../components/main-page/Taskcard";
 import Dropdown from "../components/main-page/Dropdown";
 
 import '../styles/Home.css';
-function Home() {
+function Tasks() {
   return (
     <div>
         <div className="header2">
@@ -27,4 +27,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Tasks
