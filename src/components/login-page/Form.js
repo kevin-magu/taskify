@@ -12,7 +12,14 @@ function Form() {
       <p><EmojiEmotions /></p>
       </div>
       <div className='form-right-side'>
-        Right
+        <form>
+          <label>Username</label>
+          <input type="text" placeholder='Enter your username' />
+
+          <label id='label'>Password</label>
+          <input type="text" placeholder='Enter your Password' />
+          
+        </form>
       </div>
     </div>
   )

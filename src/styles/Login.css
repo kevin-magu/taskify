@@ -27,3 +27,24 @@
     width: 400px;
     height: 400px;
 }
+.form-right-side form{
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.form-right-side form input{
+    margin-top: 30px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid blue;
+}
+.form-right-side form input:focus{
+    outline: none;
+}
+label{
+    font-weight: bold;
+}
+#label{
+    margin-top: 30px;
+}
