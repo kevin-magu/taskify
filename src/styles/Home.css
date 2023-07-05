@@ -1,0 +1,45 @@
+button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    background-color: #0000EE;
+    color: white;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+button span{
+    font-size: 20px;
+    margin-right: 4px;
+    font-weight: bold;
+}
+button p{
+    font-weight: bold;
+    font-size: 17px;
+}
+.header2{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.user-pic{
+    height: 40PX;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #0000EE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0;
+    transform: translateX(250px);
+}
+.create-task-button{
+    transform: translateX(-250px);
+    
+}
+.logout-button{
+    transform: translateX(280px);
+    margin-top: 3px;
+}

@@ -1,11 +1,21 @@
 *{
   margin: 0;
 }
-
+.main-page-container{
+  min-height: 90vh;
+}
 .app-title{
   display: flex;
   justify-content: center;
   margin-top: 30px;
-  font-size: 30px;
+  font-size: 34px;
   font-weight: bold;
+}
+.social-links{
+  display: flex;
+  justify-content: center;
+}
+.social-links a{
+  margin-right: 20px;
+  transform: scale(1.3);
 }
