@@ -2,6 +2,7 @@ import Createtask from "../components/main-page/Createtask";
 import Userpic from "../components/main-page/Userpic";
 import Loginbutton from "../components/main-page/Loginbutton"; 
 import Taskcard from "../components/main-page/Taskcard";
+import Dropdown from "../components/main-page/Dropdown";
 
 import '../styles/Home.css';
 function Home() {
@@ -11,6 +12,9 @@ function Home() {
           <Createtask />
           <Userpic />
           <Loginbutton />
+        </div>
+        <div className="header2">
+          <Dropdown />
         </div>
         <div className="task-card-container">
               <Taskcard />
