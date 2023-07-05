@@ -8,8 +8,7 @@ function Registrationform() {
     <div className='form-section'>
       <div className='form-left-side'>
       <p>
-        Unleash your productivity potential and conquer your goals effortlessly.
-        
+      Join us today and unlock a world of productivity. Register now!
       </p>
       
       </div>
@@ -20,10 +19,10 @@ function Registrationform() {
 
           <label id='label'>Password</label>
           <input type="text" placeholder='Enter your Password' />
-          <button>Login</button>
+          <button>Register</button>
 
           <p className='sign-in-with-google'> 
-          <Google className='google-icon'/>Sign in with Google 
+          <Google className='google-icon'/>Sign up with Google 
            </p>
            <p className='create-account-link'>Already have an account? 
            <Link to="/login" className='reginster-link'><button>Login here</button> </Link> </p> 
