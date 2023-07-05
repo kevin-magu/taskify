@@ -46,6 +46,10 @@ button p{
 
 .drop-down select{
     width: 170px;
+    border: 1px solid #0000EE;
+}
+.drop-down select:focus{
+    outline: none;
 }
 
 .task-card-container{
