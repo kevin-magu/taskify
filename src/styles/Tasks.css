@@ -33,6 +33,7 @@ button p{
     justify-content: center;
     align-items: center;
     margin-right: 70px;
+    color: white;
 }
 .create-task-button{
     margin-left: 50px;

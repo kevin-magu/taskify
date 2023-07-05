@@ -4,7 +4,7 @@ import Loginbutton from "../components/main-page/Loginbutton";
 import Taskcard from "../components/main-page/Taskcard";
 import Dropdown from "../components/main-page/Dropdown";
 
-import '../styles/Home.css';
+import '../styles/Tasks.css';
 function Tasks() {
   return (
     <div>
