@@ -75,6 +75,7 @@ button{
     display: flex;
     align-items: center;
     margin-top: 20px;
+    font-weight: bold;
 }
 .create-account-link button{
     font-size: 12px;
