@@ -46,6 +46,7 @@ button p{
     display: flex;
     justify-content: flex-end;
     width: 100%;
+    
 }
 
 .drop-down select{
