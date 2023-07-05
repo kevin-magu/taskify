@@ -3,13 +3,21 @@ import Userpic from "../components/main-page/Userpic";
 import Loginbutton from "../components/main-page/Loginbutton"; 
 import Taskcard from "../components/main-page/Taskcard";
 import Dropdown from "../components/main-page/Dropdown";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import '../styles/Tasks.css';
 function Tasks() {
   return (
     <div>
+      
         <div className="header2">
-          <Createtask />
+          
+          <Router>
+              <Routes>
+              <Route path="/createtasks" element={<Tasks />}/>
+              </Routes>
+          </Router>
           <div className="login-button-section">
           <Userpic />
           <Loginbutton />
