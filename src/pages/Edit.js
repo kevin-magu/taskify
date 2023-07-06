@@ -1,4 +1,4 @@
-import React from 'react'
+import Editform from "../components/edit-page/Editform"
 
 function Edit() {
   return (
