@@ -19,7 +19,7 @@ function Leftside() {
         {" "}
         <button>Go to Tasks</button>{" "}
       </Link>
-      <Link to="/login" className="get-started">
+      <Link to="/register" className="get-started">
         {" "}
         <button id="get-started-button">Get Started</button>{" "}
       </Link>
