@@ -2,11 +2,17 @@ import { GitHub, Task } from '@mui/icons-material';
 import { Twitter } from '@mui/icons-material';
 import { LinkedIn } from '@mui/icons-material';
 import { WhatsApp } from '@mui/icons-material';
+import {useState, useEffect} from 'react';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+
+
 import Tasks from './pages/Tasks'
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Edit from './pages/Edit';
+
+
 
 import { Link } from 'react-router-dom'; 
 
@@ -15,10 +21,22 @@ import './App.css';
 
 function App() {
 
+  const [user, setUser] = useState(null);
+  //obtain firebase instance using getauth
+  const auth = getAuth();
+
+  useEffect(() => {
+    const logout = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+    return () =>{
+      logout();
+    };
+  }, [auth]);
+
   return (
     <div className="App">
       <div className='main-page-container'>
-      
         <Router>
         <div className='app-title'> <Link className='link-to-register' to="/"> <p>Taskify</p></Link> </div>
             <Routes> 
@@ -29,6 +47,12 @@ function App() {
             <Route path="/edit" element={<Edit />}/>
             </Routes>
         </Router>
+        {!user? <Home /> : (
+         
+          <Tasks />
+          
+          
+        )}
       </div>
       <footer>
         <p className='social-links'>
