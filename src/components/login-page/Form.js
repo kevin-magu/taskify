@@ -4,21 +4,20 @@ import { Google } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
 //firebase ini
-import {app} from '../../Firebaseconfig'
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../Firebaseconfig';
+import {createUserWithEmailAndPassword } from 'firebase/auth';
 
 function Form() {
   //registration from firebase
-  const auth = getAuth(app)
   
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleRegister = async (e) =>{
+    const handleLogin = async (e) =>{
       e.preveventDefault();
 
       try {
-        await createUserWithEmailAndPassword(auth, email, password)
+        await createUserWithEmailAndPassword( email, password)
       } catch (error) {
         console.log(error)
       } 
@@ -36,12 +35,12 @@ function Form() {
       <p><EmojiEmotions /></p>
       </div>
       <div className='form-right-side'>
-        <form>
+        <form onSubmit={handleLogin}>
           <label>Username</label>
-          <input type="text" value={email} placeholder='Enter your username' />
+          <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Enter your username' />
 
           <label id='label' >Password</label>
-          <input type="text" value={password} placeholder='Enter your Password' />
+          <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Enter your Password' />
           <button type='submit'>Login</button>
 
           <p className='sign-in-with-google'> 

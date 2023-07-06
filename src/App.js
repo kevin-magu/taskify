@@ -15,10 +15,6 @@ import './App.css';
 
 function App() {
 
-  App.use(function (req, res, next) {
-    res.setHeader('Set-Cookie', 'HttpOnly;Secure;SameSite=None');
-    next();
-  });
   return (
     <div className="App">
       <div className='main-page-container'>

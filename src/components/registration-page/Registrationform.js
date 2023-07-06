@@ -5,17 +5,17 @@ import { Google } from "@mui/icons-material";
 import { useState } from "react";
 //firebase ini
 
-import {app} from '../../Firebaseconfig'
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from "../../Firebaseconfig";
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 function Registrationform() {
-  const auth = getAuth(app)
+  
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleRegister = async (e) =>{
-    e.preveventDefault();
+    e.preventDefault();
 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
