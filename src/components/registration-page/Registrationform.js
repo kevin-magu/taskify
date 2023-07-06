@@ -2,8 +2,30 @@ import Form from "../../components/login-page/Form";
 import '../../styles/Login.css'
 import { Link } from "react-router-dom";
 import { Google } from "@mui/icons-material";
+import { useState } from "react";
+//firebase ini
+
+import {app} from '../../Firebaseconfig'
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 function Registrationform() {
+  const auth = getAuth(app)
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleRegister = async (e) =>{
+    e.preveventDefault();
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      console.log("successiful");
+    } catch (error) {
+      console.log(error)
+    } 
+  
+};
+
   return (
     <div className='form-section'>
       <div className='form-left-side'>
@@ -13,13 +35,13 @@ function Registrationform() {
       
       </div>
       <div className='form-right-side'>
-        <form>
-          <label>Username</label>
-          <input type="text" placeholder='Enter your username' />
+        <form onSubmit={handleRegister}>
+          <label>Email</label>
+          <input type="text" placeholder='Enter your email' value={email} onChange={(e) => setEmail(e.target.value)} />
 
           <label id='label'>Password</label>
-          <input type="text" placeholder='Enter your Password' />
-          <button>Register</button>
+          <input type="text" placeholder='Enter your Password' onChange={(e) => setPassword(e.target.value)}/>
+          <button type="submit">Register</button>
 
           <p className='sign-in-with-google'> 
           <Google className='google-icon'/>Sign up with Google 
