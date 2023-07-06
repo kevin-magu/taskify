@@ -41,18 +41,13 @@ function App() {
         <div className='app-title'> <Link className='link-to-register' to="/"> <p>Taskify</p></Link> </div>
             <Routes> 
             <Route exact path="/"element={<Home />}/>
-            <Route path="/createtasks" element={<Tasks />}/>
+            <Route path="/createtasks" element={user? <Tasks /> : <Home />}/>
             <Route path="/login" element={<Login />}/>
             <Route path="/register" element={<Register />}/>
             <Route path="/edit" element={<Edit />}/>
             </Routes>
         </Router>
-        {!user? <Home /> : (
-         
-          <Tasks />
-          
-          
-        )}
+        
       </div>
       <footer>
         <p className='social-links'>
