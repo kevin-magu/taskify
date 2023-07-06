@@ -31,10 +31,11 @@ function App() {
         </Router>
       </div>
       <footer>
-        <p className='social-links'><a href="#"><GitHub /></a> <a href="#"><Twitter /> </a>
-        <a href="#"> <LinkedIn /> </a> <a href="#"> <WhatsApp /> </a>
+        <p className='social-links'>
           <span style={{ marginLeft: `20px`, fontWeight: `bold`, color: `blue` }}>&copy; 2023 Taskify</span>
-          <span style={{ marginLeft: `20px`, fontWeight: `bold`,  color: `blue` }}>Proudly developed by Kevin M</span>
+          <span style={{ marginLeft: `20px`, fontWeight: `bold`,  color: `blue`, marginRight: `30px` }}>Proudly developed by Kevin M</span>
+          <a href="#"><GitHub /></a> <a href="#"><Twitter /> </a>
+        <a href="#"> <LinkedIn /> </a> <a href="#"> <WhatsApp /> </a>
         </p>
       </footer>
     </div>
