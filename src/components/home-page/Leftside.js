@@ -15,10 +15,15 @@ function Leftside() {
         <EmojiEmotions className="face"/>
       </p>
 
+      <Link to="/createtasks" className="get-started">
+        {" "}
+        <button>Go to Tasks</button>{" "}
+      </Link>
       <Link to="/login" className="get-started">
         {" "}
-        <button>Get Started</button>{" "}
+        <button id="get-started-button">Get Started</button>{" "}
       </Link>
+      
     </div>
   );
 }
