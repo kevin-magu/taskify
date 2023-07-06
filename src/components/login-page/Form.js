@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 //firebase ini
 import { auth } from '../../Firebaseconfig';
-import {createUserWithEmailAndPassword } from 'firebase/auth';
+import {signInWithEmailAndPassword } from 'firebase/auth';
 
 function Form() {
   //registration from firebase
@@ -14,10 +14,11 @@ function Form() {
     const [password, setPassword] = useState('');
 
     const handleLogin = async (e) =>{
-      e.preveventDefault();
+      e.preventDefault();
 
       try {
-        await createUserWithEmailAndPassword( email, password)
+        await signInWithEmailAndPassword(auth, email, password);
+        console.log("Login sucessiful");
       } catch (error) {
         console.log(error)
       } 
