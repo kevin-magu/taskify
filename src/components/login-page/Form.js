@@ -29,7 +29,7 @@ function Form() {
         setIsLoading(true);
         const login = await signInWithEmailAndPassword(auth, email, password);
         
-        navigate('/createtasks?login=success')
+        navigate('/createtasks?Login=success')
       }catch (error) {
         console.log(error);
      if(error instanceof FirebaseError) {
