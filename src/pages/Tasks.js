@@ -12,17 +12,17 @@ import { useEffect, useState } from "react";
 function Tasks() {
   const Location = useLocation();
   const queryParams = new URLSearchParams(Location.search);
-  const loginStatus = queryParams.get(`Form`);
+  const loginStatus = queryParams.get('Form');
 
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   useEffect(() => {
     if (loginStatus === "success") {
-      setShowSuccessMessage(true);
+      setShowSuccessMessage (true);
 
       const timer = setTimeout(() => {
         setShowSuccessMessage(false);
-      }, 4000);
+      }, 6000);
       return () => clearTimeout(timer);
     } else {
       console.log("error");
@@ -31,8 +31,8 @@ function Tasks() {
 
   return (
     <div>
-      {showSuccessMessage === "success"   && (
-        <div className="login-success" >Login successful</div>
+      {showSuccessMessage && (
+        <div  className="login-success" >Welcome back Champ!</div>
       )}
 
   
