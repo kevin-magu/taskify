@@ -10,9 +10,9 @@ import "../styles/Tasks.css";
 import { useEffect, useState } from "react";
 
 function Tasks() {
-  Location = useLocation();
+  const Location = useLocation();
   const queryParams = new URLSearchParams(Location.search);
-  const loginStatus = queryParams.get("Form");
+  const loginStatus = queryParams.get(`Form`);
 
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
@@ -31,10 +31,11 @@ function Tasks() {
 
   return (
     <div>
-      {showSuccessMessage === "success" && (
-        <div className="login-success">Login successful</div>
+      {showSuccessMessage === "success"   && (
+        <div className="login-success" >Login successful</div>
       )}
 
+  
       <div className="header2">
         <Createtask />
         <div className="login-button-section">
