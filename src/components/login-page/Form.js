@@ -12,7 +12,7 @@ import { auth } from '../../Firebaseconfig';
 import {getAuth, signInWithEmailAndPassword,AuthErrorCodes} from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
 
-function Form() {
+const Form = () => {
   //registration from firebase
   
     const [email, setEmail] = useState('');
@@ -29,7 +29,7 @@ function Form() {
         setIsLoading(true);
         const login = await signInWithEmailAndPassword(auth, email, password);
         
-        navigate('/createtasks?Login=success')
+        navigate('/createtasks?Form=success')
       }catch (error) {
         console.log(error);
      if(error instanceof FirebaseError) {

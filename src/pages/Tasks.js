@@ -12,7 +12,8 @@ import { useEffect, useState } from "react";
 function Tasks() {
   Location = useLocation();
   const queryParams = new URLSearchParams(Location.search);
-  const loginStatus = queryParams.get("Login");
+  const loginStatus = queryParams.get("Form");
+
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   useEffect(() => {
