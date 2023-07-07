@@ -65,6 +65,11 @@ function Form() {
            </p>
            <p className='create-account-link'>Don't have an account? <Link to="/register" className='reginster-link'><button>Register here</button> </Link> </p> 
         </form>
+        <Snackbar open={snackbarOpen} autoHideDuration={5000} onClose={handleSnackbarClose}>
+        <MuiAlert onClose={handleSnackbarClose} severity="error" variant="filled">
+        {errorMessage}
+        </MuiAlert>
+        </Snackbar>
       </div>
     </div>
   )
