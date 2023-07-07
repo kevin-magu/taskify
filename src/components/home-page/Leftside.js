@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { EmojiEmotions } from "@mui/icons-material";
-
+import { getAuth } from "firebase/auth";
 
 
 function Leftside() {
+  const auth = getAuth();
+  const user = auth.currentUser;
 
 
   return (
@@ -19,7 +21,7 @@ function Leftside() {
         <EmojiEmotions className="face"/>
       </p>
 
-      <Link to="/createtasks" className="get-started">
+      <Link to={user? '/createtasks' : '/login'} className="get-started">
         {" "}
         <button>Go to Tasks</button>{" "}
       </Link>

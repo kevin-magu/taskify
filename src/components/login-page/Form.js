@@ -37,7 +37,10 @@ function Form() {
           setErrorMessage('Wrong Password');
         }else if(error.code === 'auth/network-request-failed'){
           setErrorMessage('Network connection error');
-        }else{
+        }else if(error.code === 'auth/invalid-email'){
+          setErrorMessage('Invalid Email address');
+        }
+        else{
           setErrorMessage('An error occurred. Please try again later');
         }
       }
