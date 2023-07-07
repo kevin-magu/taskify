@@ -15,6 +15,7 @@ function Form() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState(false);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
     const handleLogin = async (e) =>{
@@ -31,7 +32,11 @@ function Form() {
         }else{
           setErrorMessage('An error occured. Please try again');
         }
+        setSnackbarOpen(true);
       } 
+      const handleSnackbarClose  = () => {
+        setSnackbarOpen(false);
+      }
     
   };
 
