@@ -2,7 +2,11 @@ import Form from "../../components/login-page/Form";
 import '../../styles/Login.css'
 import { Link } from "react-router-dom";
 import { Google } from "@mui/icons-material";
-import {Snckbar} from "@mui/icons-material";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+
+import Slide from '@mui/material/Slide';
 import { useState } from "react";
 //firebase ini
 
@@ -20,13 +24,21 @@ function Registrationform() {
     e.preventDefault();
 
     try {
+      if (password.length<6) {
+        throw new Error('Password should be at least 6 characters long')
+        
+      }
       await createUserWithEmailAndPassword(auth, email, password);
       console.log("successiful");
     } catch (error) {
-      console.log(error)
+      setErrorMessage(error.message);
+      setSnackbarOpen(true);
     } 
-  
 };
+
+const handleSnackbarClose = () => {
+  setSnackbarOpen(false);
+}
 
   return (
     <div className='form-section'>
@@ -51,6 +63,12 @@ function Registrationform() {
            <p className='create-account-link'>Already have an account? 
            <Link to="/login" className='reginster-link'><button>Login here</button> </Link> </p> 
         </form>
+
+        <Snackbar open={snackbarOpen} autoHideDuration={2000} onClose={handleSnackbarClose}>
+        <MuiAlert onClose={handleSnackbarClose} severity="error" variant="filled">
+        {errorMessage}
+        </MuiAlert>
+        </Snackbar>
       </div>
     </div>
   )
