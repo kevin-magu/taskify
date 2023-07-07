@@ -5,8 +5,8 @@ import { Google } from "@mui/icons-material";
 import MuiAlert from '@mui/material/Alert';
 import { Snackbar } from "@mui/material";
 import { useState } from "react";
-//firebase ini
 
+//firebase ini
 import { auth } from "../../Firebaseconfig";
 import { getAuth, createUserWithEmailAndPassword, AuthErrorCodes } from 'firebase/auth';
 
@@ -29,7 +29,7 @@ function Registrationform() {
       await createUserWithEmailAndPassword(auth, email, password);
 
     } catch (error) {
-      setIsLoading(false)
+      setIsLoading(false);
       if (error.code === AuthErrorCodes.EMAIL_EXISTS) {
         setErrorMessage('Email address is already in use')
       }else{

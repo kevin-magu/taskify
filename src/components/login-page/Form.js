@@ -2,25 +2,35 @@ import React, { useState } from 'react';
 import { EmojiEmotions, Try } from '@mui/icons-material';
 import { Google } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import MuiAlert from '@mui/material/Alert';
+import { Snackbar } from '@mui/material';
 
 //firebase ini
 import { auth } from '../../Firebaseconfig';
-import {signInWithEmailAndPassword } from 'firebase/auth';
+import {getAuth, signInWithEmailAndPassword,AuthErrorCodes } from 'firebase/auth';
 
 function Form() {
   //registration from firebase
   
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleLogin = async (e) =>{
       e.preventDefault();
 
       try {
+        setIsLoading(true);
         await signInWithEmailAndPassword(auth, email, password);
         console.log("Login sucessiful");
       } catch (error) {
-        console.log(error)
+      setIsLoading(false);
+        if (error.codes === AuthErrorCodes.CREDENTIAL_MISMATCH) {
+          setErrorMessage('Wrong password or email');
+        }else{
+          setErrorMessage('An error occured. Please try again');
+        }
       } 
     
   };
