@@ -68,11 +68,11 @@ function Form() {
       </div>
       <div className='form-right-side'>
         <form onSubmit={handleLogin}>
-          <label>Username</label>
+          <label>Email</label>
           <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Enter your username' />
 
           <label id='label' >Password</label>
-          <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Enter your Password' />
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Enter your Password' />
           <button type='submit' id="register-button">{isLoading? 'Authenticating...' :'Login'}</button>
 
           <p className='sign-in-with-google'> 
