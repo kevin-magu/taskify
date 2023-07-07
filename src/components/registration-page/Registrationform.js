@@ -33,8 +33,10 @@ function Registrationform() {
       setIsLoading(false);
       if (error.code === AuthErrorCodes.EMAIL_EXISTS) {
         setErrorMessage('Email address is already in use')
+      }else if(error.code === 'auth/network-request-failed'){
+        setErrorMessage('Network connection error');
       }else{
-        setErrorMessage('An error occured. Please try again');
+        setErrorMessage('An error occurred. Please try again later');
       }
       setSnackbarOpen(true);
     } 

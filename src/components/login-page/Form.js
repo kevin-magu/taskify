@@ -7,7 +7,8 @@ import { Snackbar } from '@mui/material';
 
 //firebase ini
 import { auth } from '../../Firebaseconfig';
-import {getAuth, signInWithEmailAndPassword,AuthErrorCodes } from 'firebase/auth';
+import {getAuth, signInWithEmailAndPassword,AuthErrorCodes} from 'firebase/auth';
+import { FirebaseError } from 'firebase/app';
 
 function Form() {
   //registration from firebase
@@ -25,20 +26,28 @@ function Form() {
         setIsLoading(true);
         await signInWithEmailAndPassword(auth, email, password);
         console.log("Login sucessiful");
-      } catch (error) {
+      }catch (error) {
+        console.log(error);
+     if(error instanceof FirebaseError) {
       setIsLoading(false);
-        if (error.codes === AuthErrorCodes.CREDENTIAL_MISMATCH) {
-          setErrorMessage('Wrong password or email');
+
+        if (error.code === 'auth/user-not-found') {
+          setErrorMessage('Email does not exist');
+        }else if(error.code === 'auth/wrong-password'){
+          setErrorMessage('Wrong Password');
+        }else if(error.code === 'auth/network-request-failed'){
+          setErrorMessage('Network connection error');
         }else{
-          setErrorMessage('An error occured. Please try again');
+          setErrorMessage('An error occurred. Please try again later');
         }
+      }
         setSnackbarOpen(true);
       } 
-      const handleSnackbarClose  = () => {
-        setSnackbarOpen(false);
-      }
-    
+      
   };
+  const handleSnackbarClose  = () => {
+    setSnackbarOpen(false);
+  }
 
 
   return (
@@ -58,7 +67,7 @@ function Form() {
 
           <label id='label' >Password</label>
           <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Enter your Password' />
-          <button type='submit'>Login</button>
+          <button type='submit' id="register-button">{isLoading? 'Authenticating...' :'Login'}</button>
 
           <p className='sign-in-with-google'> 
           <Google className='google-icon'/>Sign in with Google 
