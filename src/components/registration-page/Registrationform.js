@@ -2,18 +2,20 @@ import Form from "../../components/login-page/Form";
 import '../../styles/Login.css'
 import { Link } from "react-router-dom";
 import { Google } from "@mui/icons-material";
+import {Snckbar} from "@mui/icons-material";
 import { useState } from "react";
 //firebase ini
 
 import { auth } from "../../Firebaseconfig";
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 function Registrationform() {
-  
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const[errorMessage, setErrorMessage] = useState('');
+  const [snackbarOpen, setSnackbarOpen] = useState(false)
+  const auth = getAuth()
   const handleRegister = async (e) =>{
     e.preventDefault();
 

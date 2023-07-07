@@ -1,18 +1,18 @@
 import {getAuth, signOut } from 'firebase/auth'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function Loginbutton() {
 
   //Obtain the Firebase Auth instance and the 
   //history object using getAuth and useHistory:
   const auth = getAuth();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   //Implement a logout function that signs out the user and redirects to <Home />:
   const handleLogout = async () =>{
     try {
       await signOut(auth);
-      history.push('/')
+      navigate('/')
     } catch (error) {
       console.log(error)
     }
@@ -20,7 +20,7 @@ function Loginbutton() {
 
   return (
     <div>
-        <button className='logout-button'><p>Log Out</p></button>
+        <button className='logout-button'onClick={handleLogout}><p>Log Out</p></button>
     </div>
   )
 }
