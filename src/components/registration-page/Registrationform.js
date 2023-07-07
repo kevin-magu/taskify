@@ -24,15 +24,16 @@ function Registrationform() {
     try {
       if (password.length<6) {
         throw new Error('Password should be at least 6 characters long')
-        
       }
+      setIsLoading(true);
       await createUserWithEmailAndPassword(auth, email, password);
-      console.log("successiful");
+
     } catch (error) {
+      setIsLoading(false)
       if (error.code === AuthErrorCodes.EMAIL_EXISTS) {
         setErrorMessage('Email address is already in use')
       }else{
-        setErrorMessage(error.message);
+        setErrorMessage('An error occured. Please try again');
       }
       setSnackbarOpen(true);
     } 
@@ -59,7 +60,7 @@ const handleSnackbarClose = () => {
 
           <label id='label'>Password</label>
           <input type="text" placeholder='Enter your Password' onChange={(e) => setPassword(e.target.value)} required/>
-          <button type="submit">Register</button>
+          <button type="submit" id="register-button" disabled={isLoading}>{isLoading? 'Authenticating...' : 'Register'}</button>
 
           <p className='sign-in-with-google'> 
           <Google className='google-icon'/>Sign up with Google 

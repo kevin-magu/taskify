@@ -54,6 +54,9 @@ button{
     font-size: 18px;
     width: 100px;
 }
+#register-button{
+    width: 250px;
+}
 .sign-in-with-google{
     margin-top: 20px;
     display: flex;
