@@ -19,6 +19,7 @@ function Form() {
     const [errorMessage, setErrorMessage] = useState(false);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleLogin = async (e) =>{
       e.preventDefault();
@@ -27,6 +28,7 @@ function Form() {
         setIsLoading(true);
         await signInWithEmailAndPassword(auth, email, password);
         console.log("Login sucessiful");
+        navigate('/createtasks')
       }catch (error) {
         console.log(error);
      if(error instanceof FirebaseError) {
