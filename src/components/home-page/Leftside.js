@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import { EmojiEmotions } from "@mui/icons-material";
 
+
+
 function Leftside() {
+
+
   return (
     <div className="left-side">
       <p>
