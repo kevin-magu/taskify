@@ -13,7 +13,7 @@ function Registrationform() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const[errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [snackbarOpen, setSnackbarOpen] = useState(false)
   const auth = getAuth()
   const handleRegister = async (e) =>{
