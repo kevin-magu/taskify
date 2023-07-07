@@ -16,6 +16,7 @@ function Registrationform() {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const auth = getAuth();
   const handleRegister = async (e) =>{
     e.preventDefault();
