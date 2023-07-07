@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { EmojiEmotions, Try } from '@mui/icons-material';
 import { Google } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import MuiAlert from '@mui/material/Alert';
 import { Snackbar } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 //firebase ini
 import { auth } from '../../Firebaseconfig';
@@ -26,9 +27,9 @@ function Form() {
 
       try {
         setIsLoading(true);
-        await signInWithEmailAndPassword(auth, email, password);
-        console.log("Login sucessiful");
-        navigate('/createtasks')
+        const login = await signInWithEmailAndPassword(auth, email, password);
+        
+        navigate('/createtasks?login=success')
       }catch (error) {
         console.log(error);
      if(error instanceof FirebaseError) {

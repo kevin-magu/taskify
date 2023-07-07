@@ -4,13 +4,34 @@ import Loginbutton from "../components/tasks-page/Loginbutton";
 import Taskcard from "../components/tasks-page/Taskcard";
 import Dropdown from "../components/tasks-page/Dropdown";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import '../styles/Tasks.css';
+import { useEffect, useState } from "react";
 function Tasks() {
+  const queryParams = new URLSearchParams(Location.search);
+  const loginStatus = queryParams.get('login');
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+  useEffect(() => {
+    if (loginStatus === 'success') {
+      setShowSuccessMessage(true);
+
+      const timer  = setTimeout(() =>{
+        setShowSuccessMessage(false);
+      }, 4000);
+      return () => clearTimeout(timer)
+    }
+}, [loginStatus]);
+  
   return (
     <div>
-      
+        {
+          showSuccessMessage && (
+            <div className="login-success">Login was successful</div>
+          )
+        }
+        
         <div className="header2">
           <Createtask />
           <div className="login-button-section">
