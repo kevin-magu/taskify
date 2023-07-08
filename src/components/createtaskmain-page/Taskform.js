@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app"
 import {getFirestore} from "@firebase/firestore"
 import {app} from "../../Firebaseconfig"
 import { useState } from "react";
+import {collection, getDocs,addDoc} from "firebase/firestore";
 
 
 
@@ -17,10 +18,25 @@ function Taskform() {
     const [mediumPriority, setMediumPriority] = useState(false);
     const [lowPriority, setLowPriority] = useState(false);
 
+    const usersCollectionRef = collection(db, "users");
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        if (highPriority) {
+            setTaskPriority('High');
+        } else if(mediumPriority){
+            setTaskPriority('Medium');   
+        } else if(lowPriority){
+            setTaskPriority ('Low');
     }
+    
+    try {
+        await addDoc(usersCollectionRef, {task_title: taskTitle, task_description: taskDescription, task_prority: taskPriority,task_duedate: dueDate,task_status: taskStatus});
+    } catch (error) {
+        console.log(error);
+    }
+    
+}
 
   return (
     <div className="create-tasks-main-container">
@@ -61,7 +77,7 @@ function Taskform() {
         </select>
         </div>
 
-        <button style={{ margin: `0`, marginTop:`10px` }} className='create-task-button'>Create Task</button>
+        <button style={{ margin: `0`, marginTop:`10px` }} className='create-task-button' onClick={handleSubmit}>Create Task</button>
     </form>
   </div>
   )
