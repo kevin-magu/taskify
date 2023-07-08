@@ -12,29 +12,35 @@ function Taskform() {
     const [taskDescription, setTaskDescription] = useState('');
     const [dueDate, setDueDate] = useState('');
     const [taskPriority, setTaskPriority] = useState('');
-    const [taskStatus, setTaskStatus] = useState('In Progress')
-    const [highPriority, setHighPriority] = useState('');
-    const [mediumPriority, setMediumPriority] = useState('');
-    const [lowPriority, setLowPriority] = useState('');
+    const [taskStatus, setTaskStatus] = useState('In Progress');
+
+    const [highPriority, setHighPriority] = useState(false);
+    const [mediumPriority, setMediumPriority] = useState(false);
+    const [lowPriority, setLowPriority] = useState(false);
+
     const usersCollectionRef = collection(db, "users");
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
+        let newsetTaskPriority = ''
         if (highPriority) {
-            setTaskPriority('High');
+          newsetTaskPriority ='High';
         } else if(mediumPriority){
-            setTaskPriority('Medium');   
+          newsetTaskPriority ='Medium';   
         } else if(lowPriority){
-            setTaskPriority ('Low');
+          newsetTaskPriority='Low';
     }
-    
+
+    setTaskPriority(newsetTaskPriority);
     try {
-        await addDoc(usersCollectionRef, {task_title: taskTitle, task_description: taskDescription, task_prority: taskPriority,task_duedate: dueDate,task_status: taskStatus});
-    } catch (error) {
+        await addDoc(usersCollectionRef, {task_title: taskTitle, task_description: taskDescription, task_prority: newsetTaskPriority,task_duedate: dueDate,task_status: taskStatus});
+        console.log("success")
+      } catch (error) {
         console.log(error);
     }
-    
 }
+
 
   return (
     <div className="create-tasks-main-container">
@@ -70,8 +76,8 @@ function Taskform() {
         <div>
         <select value={taskStatus} onChange={(e)=> setTaskStatus(e.target.value)}>
             <option value="In progress" key="">In progress</option>
-            <option value="status" key="">Pending</option>
-            <option value="status" key="">Complete</option>
+            <option value="pending" key="">Pending</option>
+            <option value="complete" key="">Complete</option>
         </select>
         </div>
 
