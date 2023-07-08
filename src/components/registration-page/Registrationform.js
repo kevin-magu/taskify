@@ -5,6 +5,7 @@ import { Google } from "@mui/icons-material";
 import MuiAlert from '@mui/material/Alert';
 import { Snackbar } from "@mui/material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 //firebase ini
 import { auth } from "../../Firebaseconfig";
@@ -18,6 +19,8 @@ function Registrationform() {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const navigate = useNavigate();
+
   const auth = getAuth();
   const handleRegister = async (e) =>{
     e.preventDefault();
@@ -28,7 +31,7 @@ function Registrationform() {
       }
       setIsLoading(true);
       await createUserWithEmailAndPassword(auth, email, password);
-
+      navigate('/login');
     } catch (error) {
       setIsLoading(false);
       if (error.code === AuthErrorCodes.EMAIL_EXISTS) {

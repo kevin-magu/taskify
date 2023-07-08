@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
 
 //firebase ini
 import { auth } from '../../Firebaseconfig';
-import {getAuth, signInWithEmailAndPassword,AuthErrorCodes} from 'firebase/auth';
+import {getAuth, signInWithEmailAndPassword,AuthErrorCodes,GoogleAuthProvider,signInWithPopup} from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
 
 const Form = () => {
@@ -22,6 +22,8 @@ const Form = () => {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
+    const auth = getAuth();
+
     const handleLogin = async (e) =>{
       e.preventDefault();
 
@@ -29,7 +31,7 @@ const Form = () => {
         setIsLoading(true);
         const login = await signInWithEmailAndPassword(auth, email, password);
         
-        navigate('/createtasks?Form=success')
+        navigate('/createtasks?Form=success');
       }catch (error) {
         console.log(error);
      if(error instanceof FirebaseError) {
@@ -50,12 +52,21 @@ const Form = () => {
       }
         setSnackbarOpen(true);
       } 
-      
+
   };
   const handleSnackbarClose  = () => {
     setSnackbarOpen(false);
   }
-
+  
+  const handleSignInWithGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+      navigate('/createtasks?Form=success');
+    } catch (error) {
+      console.log('Sign-in with Google error:', error);
+    }
+  }
 
   return (
     <div className='form-section'>
@@ -76,7 +87,7 @@ const Form = () => {
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Enter your Password' />
           <button type='submit' id="register-button">{isLoading? 'Authenticating...' :'Login'}</button>
 
-          <p className='sign-in-with-google'> 
+          <p className='sign-in-with-google' onClick={handleSignInWithGoogle}> 
           <Google className='google-icon'/>Sign in with Google 
            </p>
            <p className='create-account-link'>Don't have an account? <Link to="/register" className='reginster-link'><button>Register here</button> </Link> </p> 
