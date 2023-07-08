@@ -1,7 +1,23 @@
 import { initializeApp } from "firebase/app"
 import {getFirestore} from "firebase/firestore"
+import {app} from "../../Firebaseconfig"
+import { useState } from "react";
 
 function Taskform() {
+    const db = getFirestore(app);
+    const [taskTitle, setTaskTitle] = useState('');
+    const [taskDescription, setTaskDescription] = useState('');
+    const [taskPriority, setTaskPriority] = useState('');
+    const [taskStatus, setTaskStatus] = useState('In Progress')
+
+    const [highPriority, setHighPriority] = useState(false);
+    const [mediumPriority, setMediumPriority] = useState(false);
+    const [lowPriority, setLowPriority] = useState(false);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    }
+
   return (
     <div className="create-tasks-main-container">
     <div className="create-tasks-main">
