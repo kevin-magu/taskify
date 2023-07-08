@@ -13,11 +13,9 @@ function Taskform() {
     const [dueDate, setDueDate] = useState('');
     const [taskPriority, setTaskPriority] = useState('');
     const [taskStatus, setTaskStatus] = useState('In Progress')
-
-    const [highPriority, setHighPriority] = useState(false);
-    const [mediumPriority, setMediumPriority] = useState(false);
-    const [lowPriority, setLowPriority] = useState(false);
-
+    const [highPriority, setHighPriority] = useState('');
+    const [mediumPriority, setMediumPriority] = useState('');
+    const [lowPriority, setLowPriority] = useState('');
     const usersCollectionRef = collection(db, "users");
 
     const handleSubmit = async (e) => {
