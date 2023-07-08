@@ -10,7 +10,7 @@ import Tasks from './pages/Tasks'
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Edit from './pages/Edit';
+import CreatetaksMain from './pages/CreatetaksMain';
 
 
 
@@ -44,7 +44,7 @@ function App() {
             <Route path="/createtasks" element={user? <Tasks /> : <Home />}/>
             <Route path="/login" element={<Login />}/>
             <Route path="/register" element={<Register />}/>
-            <Route path="/edit" element={<Edit />}/>
+            <Route path="/edit" element={<CreatetaksMain />}/>
             </Routes>
         </Router>
         

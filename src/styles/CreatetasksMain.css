@@ -1,0 +1,11 @@
+.create-tasks-main-container{
+
+}
+
+.create-tasks-main{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    color: blue;
+}
