@@ -1,5 +1,7 @@
 .create-tasks-main-container{
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .create-tasks-main{
@@ -8,4 +10,27 @@
     justify-content: center;
     margin-top: 30px;
     color: blue;
+}
+
+.create-task-form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    width: 50%;
+}
+.create-task-form label{
+    margin-top: 20px;
+    color: blue;
+}
+.create-task-form .input-fields{
+    height: 30px;
+}
+.priority-label{
+    margin-right: 10px;
+}
+.priority-labels{
+    margin-top: 10px;
+}
+.create-task-form input:focus{
+    outline: none;
 }

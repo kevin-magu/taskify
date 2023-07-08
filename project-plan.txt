@@ -1,3 +1,7 @@
 CREATE A NEW TASK PAGE
 
 Task title 
+Task description
+Due date
+Priority
+Status
