@@ -1,17 +1,35 @@
-import { Edit } from "@mui/icons-material"
+// Taskcard.js
 
-function Taskcard() {
+import { Edit } from "@mui/icons-material";
+import { useEffect, useState } from "react";
+import { app } from "../../Firebaseconfig";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+
+function Taskcard({ users }) {
+  const db = getFirestore(app);
+  const taskCollectionRef = collection(db, "users");
+
   return (
-    <div className='task-card'>
-        <p className='task-description'>
-            Finish Introduction to computer Science -Havard
-        </p>
-        <p className='task-status'>Status: <span>Pending...</span></p>
-        <p className='task-due-date'>Due Date: 12/07/2023</p>
-        
-        <p className='edit'><a href="#"> <Edit /> </a></p>
+    <div>
+      {users.map((user) => (
+        <div className="task-card" key={user.id}>
+          <p className="task-description">
+            Task Title: {user.task_title}
+          </p>
+          <p className="task-status">
+            Status: <span>{user.task_status}</span>
+          </p>
+          <p className="task-due-date">Due Date: {user.task_duedate}</p>
+          <p className="edit">
+            <a href="#">
+              {" "}
+              <Edit />{" "}
+            </a>
+          </p>
+        </div>
+      ))}
     </div>
-  )
+  );
 }
 
-export default Taskcard
+export default Taskcard;

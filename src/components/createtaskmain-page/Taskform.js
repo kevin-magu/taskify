@@ -61,7 +61,7 @@ function Taskform() {
     <div className="create-tasks-main-container">
       <div className="create-tasks-main">
      
-        <h2> <Link to="/createtasks"><ArrowBack /></Link>  Create a new task</h2>
+        <h2> <Link to="/"><ArrowBack /></Link>  Create a new task</h2>
       </div>
       <form className="create-task-form">
         {showSuccessMessage && <div>success</div>}
