@@ -3,6 +3,7 @@ import { getFirestore } from "@firebase/firestore";
 import { app } from "../../Firebaseconfig";
 import { useState, useEffect } from "react";
 import { collection, getDocs, addDoc } from "@firebase/firestore";
+import { BackHand } from "@mui/icons-material";
 
 function Taskform() {
   const db = getFirestore(app);
@@ -59,7 +60,8 @@ function Taskform() {
   return (
     <div className="create-tasks-main-container">
       <div className="create-tasks-main">
-        <h2>Create a new task</h2>
+     
+        <h2>  Create a new task</h2>
       </div>
       <form className="create-task-form">
         {showSuccessMessage && <div>success</div>}
