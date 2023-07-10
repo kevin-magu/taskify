@@ -3,8 +3,8 @@ import { getFirestore } from "@firebase/firestore";
 import { app } from "../../Firebaseconfig";
 import { useState, useEffect } from "react";
 import { collection, getDocs, addDoc } from "@firebase/firestore";
-import { BackHand } from "@mui/icons-material";
-
+import { ArrowBack, BackHand } from "@mui/icons-material"; 
+import { Link } from "react-router-dom";
 function Taskform() {
   const db = getFirestore(app);
   const [taskTitle, setTaskTitle] = useState("");
@@ -61,7 +61,7 @@ function Taskform() {
     <div className="create-tasks-main-container">
       <div className="create-tasks-main">
      
-        <h2>  Create a new task</h2>
+        <h2> <Link to="/createtasks"><ArrowBack /></Link>  Create a new task</h2>
       </div>
       <form className="create-task-form">
         {showSuccessMessage && <div>success</div>}
