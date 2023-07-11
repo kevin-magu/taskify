@@ -4,6 +4,7 @@ import { Edit } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { app } from "../../Firebaseconfig";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { Link } from "react-router-dom";
 
 function Taskcard({ users }) {
   const db = getFirestore(app);
@@ -22,8 +23,8 @@ function Taskcard({ users }) {
           <p className="task-due-date">Due Date: {user.task_duedate}</p>
           <p className="edit">
             <a href="#">
-              {" "}
-              <Edit />{" "}
+              
+              <Link to={`/managetask/${user.id}`}><Edit title="Manage Task"/></Link>
             </a>
           </p>
         </div>
