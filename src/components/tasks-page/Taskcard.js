@@ -10,7 +10,7 @@ function Taskcard({ users }) {
   const taskCollectionRef = collection(db, "users");
 
   return (
-    <div>
+    <div className="task-card-container">
       {users.map((user) => (
         <div className="task-card" key={user.id}>
           <p className="task-description">
