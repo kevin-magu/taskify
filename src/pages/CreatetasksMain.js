@@ -1,13 +1,15 @@
-import Editform from "../components/edit-page/Editform"
-import '../styles/CreatetasksMain.css'
-import Taskform from "../components/createtaskmain-page/Taskform"
+import React, { useContext } from 'react';
+import { AuthContext } from '../AuthContext';
+import Taskform from '../components/createtaskmain-page/Taskform';
 
 function CreatetasksMain() {
+  const { isLoggedIn } = useContext(AuthContext);
+
   return (
-   <div>
-    <Taskform />
-   </div>
-  )
+    <div>
+      {isLoggedIn ? <Taskform /> : <p>Please log in to create tasks.</p>}
+    </div>
+  );
 }
 
-export default CreatetasksMain
+export default CreatetasksMain;

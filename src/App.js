@@ -4,6 +4,7 @@ import { LinkedIn } from '@mui/icons-material';
 import { WhatsApp } from '@mui/icons-material';
 import {useState, useEffect} from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { AuthProvider } from './AuthContext';
 
 
 import Tasks from './pages/Tasks'

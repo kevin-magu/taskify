@@ -1,32 +1,33 @@
 // Taskcard.js
-
-import { Edit } from "@mui/icons-material";
 import { useEffect, useState } from "react";
-import { app } from "../../Firebaseconfig";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
-import { Link } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
+import { useAuth } from "../../AuthContext";
+import { db } from "../Firebaseconfig";
 
-function Taskcard({ users }) {
-  const db = getFirestore(app);
-  const taskCollectionRef = collection(db, "users");
+function Taskcard() {
+  const { currentUser } = useAuth();
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const querySnapshot = await getDocs(
+        collection(db, `users/${currentUser.uid}/tasks`)
+      );
+      const taskData = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setTasks(taskData);
+    };
+
+    fetchTasks();
+  }, [currentUser.uid]);
 
   return (
     <div className="task-card-container">
-      {users.map((user) => (
-        <div className="task-card" key={user.id}>
-          <p className="task-description">
-            Task Title: {user.task_title}
-          </p>
-          <p className="task-status">
-            Status: <span>{user.task_status}</span>
-          </p>
-          <p className="task-due-date">Due Date: {user.task_duedate}</p>
-          <p className="edit">
-            <a href="#">
-              
-              <Link to={`/managetask/${user.id}`}><Edit title="Manage Task"/></Link>
-            </a>
-          </p>
+      {tasks.map((task) => (
+        <div className="task-card" key={task.id}>
+          {/* Display task details */}
         </div>
       ))}
     </div>
