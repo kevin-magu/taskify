@@ -1,11 +1,10 @@
-import { getFirestore } from "@firebase/firestore";
-import { app } from "../../Firebaseconfig";
-import { useState, useEffect } from "react";
-import { collection, getDocs, addDoc } from "@firebase/firestore";
-import { ArrowBack, BackHand } from "@mui/icons-material"; 
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import { useAuth } from "../../AuthContext";
+import { db } from "../../Firebaseconfig";
+
 function Taskform() {
-  const db = getFirestore(app);
+  const { currentUser } = useAuth();
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
@@ -19,7 +18,7 @@ function Taskform() {
   const [showSuccessMessage, setSuccessMessage] = useState(false);
   const [showErrorMessage, setErrorMessage] = useState(false);
 
-  const usersCollectionRef = collection(db, "users");
+  const usersCollectionRef = collection(db, `users/${currentUser.uid}/tasks`);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,7 +36,7 @@ function Taskform() {
       await addDoc(usersCollectionRef, {
         task_title: taskTitle,
         task_description: taskDescription,
-        task_prority: newsetTaskPriority,
+        task_priority: newsetTaskPriority,
         task_duedate: dueDate,
         task_status: taskStatus,
       });
@@ -59,25 +58,22 @@ function Taskform() {
   return (
     <div className="create-tasks-main-container">
       <div className="create-tasks-main">
-     
-        <h2> <Link to="/createtasks"><ArrowBack /></Link>  Create a new task</h2>
+        <h2>Create a new task</h2>
       </div>
       <form className="create-task-form">
-        {showSuccessMessage && <div>success</div>}
-        {showErrorMessage && <div>error</div>}
+        {showSuccessMessage && <div>Success</div>}
+        {showErrorMessage && <div>Error</div>}
 
+        {/* Form inputs */}
         <label>Task Title</label>
         <input
           type="text"
           value={taskTitle}
-          className="input-fields"
           onChange={(e) => setTaskTitle(e.target.value)}
         />
 
-        <label> Task Descscription</label>
+        <label>Task Description</label>
         <textarea
-          cols="30"
-          rows="10"
           value={taskDescription}
           onChange={(e) => setTaskDescription(e.target.value)}
         ></textarea>
@@ -85,23 +81,21 @@ function Taskform() {
         <label>Due Date</label>
         <input
           type="date"
-          className="input-fields"
           value={dueDate}
           onChange={(e) => setDueDate(e.target.value)}
         />
 
         <label>Task Priority</label>
-        <div className="priority-labels">
-          <label className="priority-label">High</label>
+        <div>
+          <label>High</label>
           <input
             type="checkbox"
             checked={highPriority}
             onChange={(e) => setHighPriority(e.target.checked)}
           />
         </div>
-
         <div>
-          <label className="priority-label">Medium</label>
+          <label>Medium</label>
           <input
             type="checkbox"
             checked={mediumPriority}
@@ -109,36 +103,27 @@ function Taskform() {
           />
         </div>
         <div>
-          <label className="priority-label">Low</label>
+          <label>Low</label>
           <input
             type="checkbox"
             checked={lowPriority}
             onChange={(e) => setLowPriority(e.target.checked)}
           />
         </div>
+
         <label>Status</label>
         <div>
           <select
             value={taskStatus}
             onChange={(e) => setTaskStatus(e.target.value)}
           >
-            <option value="In progress" key="">
-              In progress
-            </option>
-            <option value="pending" key="">
-              Pending
-            </option>
-            <option value="complete" key="">
-              Complete
-            </option>
+            <option value="In Progress">In Progress</option>
+            <option value="Pending">Pending</option>
+            <option value="Complete">Complete</option>
           </select>
         </div>
 
-        <button
-          style={{ margin: `0`, marginTop: `10px` }}
-          className="create-task-button"
-          onClick={handleSubmit}
-        >
+        <button className="create-task-button" onClick={handleSubmit}>
           Create Task
         </button>
       </form>
