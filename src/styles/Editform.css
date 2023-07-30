@@ -1,0 +1,16 @@
+.edit-form{
+    display: flex;
+    flex-direction: column;
+}
+.close-button{
+    margin-top: 3px;
+}
+.edit-form button{
+    margin-top: -10px;
+}
+.edit-form textarea{
+    min-height: 100px;
+}
+.edit-form input{
+    margin-bottom: 20px;
+}

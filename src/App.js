@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import CreatetasksMain from './pages/CreatetasksMain';
+import Managetasks from './pages/Managetasks';
 import { AuthProvider } from './AuthContext';
 
 import { Link } from 'react-router-dom';
@@ -42,6 +43,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/createtasksmain" element={<CreatetasksMain />} />
+              <Route path="/managetasks" element={<Managetasks />} />
             </Routes>
           </Router>
         </div>
