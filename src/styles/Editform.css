@@ -14,3 +14,12 @@
 .edit-form input{
     margin-bottom: 20px;
 }
+.edit-form .checkbox-input{
+    margin-bottom: 2px;
+}
+.edit-form .date-input{
+    margin-top: 3px;
+}
+.edit-form button, .close-button{
+    transform: scale(0.9);
+}

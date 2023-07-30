@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { useAuth } from "../../AuthContext";
 import { db } from "../../Firebaseconfig";
 import { Edit } from "@mui/icons-material";
 import EditTask from "../edit-page/Editform"; // Adjust the path accordingly
-import '../../styles/Editform.css'
+import "../../styles/Editform.css";
 
 function Taskcard() {
   const { currentUser } = useAuth();
@@ -12,24 +12,24 @@ function Taskcard() {
   const [selectedTask, setSelectedTask] = useState(null); // Add selectedTask state
 
   useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const querySnapshot = await getDocs(
-          collection(db, `users/${currentUser.uid}/tasks`)
-        );
-        const taskData = querySnapshot.docs.map((doc) => ({
+    // Use the onSnapshot method to listen for real-time updates
+    const unsubscribe = onSnapshot(
+      collection(db, `users/${currentUser.uid}/tasks`),
+      (querySnapshot) => {
+        const updatedTasks = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        setTasks(taskData);
-      } catch (error) {
-        console.error("Error fetching tasks: ", error);
+        setTasks(updatedTasks);
+      },
+      (error) => {
+        console.error("Error in real-time listener:", error);
+        // Handle the error, show an error message, etc.
       }
-    };
+    );
 
-    if (currentUser) {
-      fetchTasks();
-    }
+    // Clean up the listener when the component is unmounted
+    return () => unsubscribe();
   }, [currentUser]);
 
   const handleEditClick = (task) => {
@@ -61,7 +61,9 @@ function Taskcard() {
           <div className="edit-modal-content">
             {/* Pass the selected task as a prop to the EditTask component */}
             <EditTask task={selectedTask} />
-            <button onClick={() => setSelectedTask(null)} className="close-button">Close</button>
+            <button onClick={() => setSelectedTask(null)} className="close-button">
+              Close
+            </button>
           </div>
         </div>
       )}
