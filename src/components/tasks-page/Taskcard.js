@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { collection, getDocs, onSnapshot } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { useAuth } from "../../AuthContext";
 import { db } from "../../Firebaseconfig";
 import { Edit } from "@mui/icons-material";
-import EditTask from "../edit-page/Editform"; // Adjust the path accordingly
-import "../../styles/Editform.css";
+import EditTask from "../edit-page/Editform"; // Import the EditTask component
 
 function Taskcard() {
   const { currentUser } = useAuth();
@@ -12,28 +11,63 @@ function Taskcard() {
   const [selectedTask, setSelectedTask] = useState(null); // Add selectedTask state
 
   useEffect(() => {
-    // Use the onSnapshot method to listen for real-time updates
-    const unsubscribe = onSnapshot(
-      collection(db, `users/${currentUser.uid}/tasks`),
-      (querySnapshot) => {
-        const updatedTasks = querySnapshot.docs.map((doc) => ({
+    const fetchTasks = async () => {
+      try {
+        const querySnapshot = await getDocs(
+          collection(db, `users/${currentUser.uid}/tasks`)
+        );
+        const taskData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        setTasks(updatedTasks);
-      },
-      (error) => {
-        console.error("Error in real-time listener:", error);
-        // Handle the error, show an error message, etc.
+        setTasks(taskData);
+      } catch (error) {
+        console.error("Error fetching tasks: ", error);
       }
-    );
+    };
 
-    // Clean up the listener when the component is unmounted
-    return () => unsubscribe();
+    if (currentUser) {
+      fetchTasks();
+    }
   }, [currentUser]);
 
-  const handleEditClick = (task) => {
-    setSelectedTask(task); // Set the selected task for editing
+  const handleEditClick = (taskId) => {
+    // Set the selected task for editing
+    const selectedTask = tasks.find((task) => task.id === taskId);
+    setSelectedTask(selectedTask);
+  };
+
+  const handleDeleteClick = async (taskId) => {
+    try {
+      // Delete the task from the database
+      await deleteDoc(doc(db, `users/${currentUser.uid}/tasks/${taskId}`));
+
+      // Update the state to remove the deleted task from the UI
+      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+    } catch (error) {
+      console.error("Error deleting task: ", error);
+    }
+  };
+
+  const handleTaskUpdate = () => {
+    // Call this function to update the UI after saving changes in EditTask
+    // We will refetch the tasks from the database
+    fetchTasks();
+  };
+
+  const fetchTasks = async () => {
+    try {
+      const querySnapshot = await getDocs(
+        collection(db, `users/${currentUser.uid}/tasks`)
+      );
+      const taskData = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setTasks(taskData);
+    } catch (error) {
+      console.error("Error fetching tasks: ", error);
+    }
   };
 
   return (
@@ -47,10 +81,11 @@ function Taskcard() {
           <p>Priority: {task.task_priority}</p>
           <p className="task-due-date">Due Date: {task.task_duedate}</p>
           <p className="edit">
-            {/* Add a button to trigger the editing */}
-            <button onClick={() => handleEditClick(task)}>
-              <Edit />
+            {/* Add buttons to trigger the editing and deletion */}
+            <button onClick={() => handleEditClick(task.id)}>
+              <Edit /> edit
             </button>
+            <button onClick={() => handleDeleteClick(task.id)}>Delete</button>
           </p>
         </div>
       ))}
@@ -60,10 +95,8 @@ function Taskcard() {
         <div className="edit-modal">
           <div className="edit-modal-content">
             {/* Pass the selected task as a prop to the EditTask component */}
-            <EditTask task={selectedTask} />
-            <button onClick={() => setSelectedTask(null)} className="close-button">
-              Close
-            </button>
+            <EditTask task={selectedTask} onUpdate={handleTaskUpdate} />
+            <button onClick={() => setSelectedTask(null)}>Close</button>
           </div>
         </div>
       )}

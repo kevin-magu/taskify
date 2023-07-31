@@ -5,63 +5,28 @@ import { db } from "../../Firebaseconfig";
 import { collection, getFirestore } from "firebase/firestore";
 import "../../styles/Editform.css";
 
-function EditTask({ task }) {
+function EditTask({ task, onUpdate }) {
   const { currentUser } = useAuth();
   const [taskTitle, setTaskTitle] = useState(task.task_title);
   const [taskDescription, setTaskDescription] = useState(task.task_description);
   const [dueDate, setDueDate] = useState(task.task_duedate);
   const [taskPriority, setTaskPriority] = useState(task.task_priority);
-  const [taskStatus, setTaskStatus] = useState(task.task_status); // Add the taskStatus state
-
-  // Add these state variables and set their initial values
-  const [highPriority, setHighPriority] = useState(taskPriority === "High");
-  const [mediumPriority, setMediumPriority] = useState(
-    taskPriority === "Medium"
-  );
-  const [lowPriority, setLowPriority] = useState(taskPriority === "Low");
-
-  const usersCollectionRef = collection(db, `users/${currentUser.uid}/tasks`);
-  const taskDocRef = doc(usersCollectionRef, task.id);
-
-  const handleHighPriorityChange = (e) => {
-    setHighPriority(e.target.checked);
-    setMediumPriority(false);
-    setLowPriority(false);
-  };
-
-  const handleMediumPriorityChange = (e) => {
-    setHighPriority(false);
-    setMediumPriority(e.target.checked);
-    setLowPriority(false);
-  };
-
-  const handleLowPriorityChange = (e) => {
-    setHighPriority(false);
-    setMediumPriority(false);
-    setLowPriority(e.target.checked);
-  };
+  const [taskStatus, setTaskStatus] = useState(task.task_status);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // Determine the task priority based on the checkboxes
-      let newTaskPriority = "";
-      if (highPriority) {
-        newTaskPriority = "High";
-      } else if (mediumPriority) {
-        newTaskPriority = "Medium";
-      } else if (lowPriority) {
-        newTaskPriority = "Low";
-      }
-
-      await updateDoc(taskDocRef, {
+      await updateDoc(doc(db, `users/${currentUser.uid}/tasks`, task.id), {
         task_title: taskTitle,
         task_description: taskDescription,
-        task_priority: newTaskPriority, // Use the newly determined priority
+        task_priority: taskPriority,
         task_duedate: dueDate,
-        task_status: taskStatus, // Use the taskStatus state
+        task_status: taskStatus,
       });
+
+      // Call the onUpdate callback to update the UI in the parent component
+      onUpdate();
 
       alert("Task updated successfully!");
       // You can add additional code here to handle successful update, show a success message, etc.
@@ -89,37 +54,50 @@ function EditTask({ task }) {
       <div>
         <label>High</label>
         <input
-          className="checkbox-input"
-          type="checkbox"
-          checked={highPriority}
-          onChange={handleHighPriorityChange}
+          type="radio"
+          name="priority"
+          value="High"
+          checked={taskPriority === "High"}
+          onChange={(e) => setTaskPriority(e.target.value)}
         />
       </div>
       <div>
         <label>Medium</label>
         <input
-          className="checkbox-input"
-          type="checkbox"
-          checked={mediumPriority}
-          onChange={handleMediumPriorityChange}
+          type="radio"
+          name="priority"
+          value="Medium"
+          checked={taskPriority === "Medium"}
+          onChange={(e) => setTaskPriority(e.target.value)}
         />
       </div>
       <div>
         <label>Low</label>
         <input
-          className="checkbox-input"
-          type="checkbox"
-          checked={lowPriority}
-          onChange={handleLowPriorityChange}
+          type="radio"
+          name="priority"
+          value="Low"
+          checked={taskPriority === "Low"}
+          onChange={(e) => setTaskPriority(e.target.value)}
         />
       </div>
-      <label className="date-input">Due date</label>
+      <label>Due Date</label>
       <input
         type="date"
         value={dueDate}
         onChange={(e) => setDueDate(e.target.value)}
       />
-
+      <label>Status</label>
+      <div>
+        <select
+          value={taskStatus}
+          onChange={(e) => setTaskStatus(e.target.value)}
+        >
+          <option value="In Progress">In Progress</option>
+          <option value="Pending">Pending</option>
+          <option value="Complete">Complete</option>
+        </select>
+      </div>
       <button type="submit">Save</button>
     </form>
   );

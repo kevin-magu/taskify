@@ -1,6 +1,8 @@
 .edit-form{
     display: flex;
     flex-direction: column;
+    padding: 2px;
+
 }
 .close-button{
     margin-top: 3px;

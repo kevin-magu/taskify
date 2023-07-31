@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { useAuth } from "../../AuthContext";
 import { db } from "../../Firebaseconfig";
@@ -11,9 +11,8 @@ function Taskform() {
   const [taskPriority, setTaskPriority] = useState("");
   const [taskStatus, setTaskStatus] = useState("In Progress");
 
-  const [highPriority, setHighPriority] = useState(false);
-  const [mediumPriority, setMediumPriority] = useState(false);
-  const [lowPriority, setLowPriority] = useState(false);
+  // Add the state variable to track the selected priority checkbox
+  const [selectedPriority, setSelectedPriority] = useState(null);
 
   const [showSuccessMessage, setSuccessMessage] = useState(false);
   const [showErrorMessage, setErrorMessage] = useState(false);
@@ -22,17 +21,17 @@ function Taskform() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let newsetTaskPriority = "";
-    if (highPriority) {
-      newsetTaskPriority = "High";
-    } else if (mediumPriority) {
-      newsetTaskPriority = "Medium";
-    } else if (lowPriority) {
-      newsetTaskPriority = "Low";
-    }
-
-    setTaskPriority(newsetTaskPriority);
     try {
+      // Determine the task priority based on the selected checkbox
+      let newsetTaskPriority = "";
+      if (selectedPriority === "high") {
+        newsetTaskPriority = "High";
+      } else if (selectedPriority === "medium") {
+        newsetTaskPriority = "Medium";
+      } else if (selectedPriority === "low") {
+        newsetTaskPriority = "Low";
+      }
+
       await addDoc(usersCollectionRef, {
         task_title: taskTitle,
         task_description: taskDescription,
@@ -53,6 +52,10 @@ function Taskform() {
       }, 4000);
       return () => clearTimeout(timer);
     }
+  };
+
+  const handlePriorityChange = (priority) => {
+    setSelectedPriority(priority);
   };
 
   return (
@@ -90,24 +93,24 @@ function Taskform() {
           <label>High</label>
           <input
             type="checkbox"
-            checked={highPriority}
-            onChange={(e) => setHighPriority(e.target.checked)}
+            checked={selectedPriority === "high"}
+            onChange={() => handlePriorityChange("high")}
           />
         </div>
         <div>
           <label>Medium</label>
           <input
             type="checkbox"
-            checked={mediumPriority}
-            onChange={(e) => setMediumPriority(e.target.checked)}
+            checked={selectedPriority === "medium"}
+            onChange={() => handlePriorityChange("medium")}
           />
         </div>
         <div>
           <label>Low</label>
           <input
             type="checkbox"
-            checked={lowPriority}
-            onChange={(e) => setLowPriority(e.target.checked)}
+            checked={selectedPriority === "low"}
+            onChange={() => handlePriorityChange("low")}
           />
         </div>
 
