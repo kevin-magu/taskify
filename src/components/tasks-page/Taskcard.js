@@ -41,7 +41,7 @@ function Taskcard() {
     try {
       // Delete the task from the database
       await deleteDoc(doc(db, `users/${currentUser.uid}/tasks/${taskId}`));
-
+      alert("Task deleted successfully")
       // Update the state to remove the deleted task from the UI
       setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
     } catch (error) {
